@@ -37,13 +37,19 @@ class MainScreen extends StatelessWidget {
             children: <Widget>[
               Text(
                 'BO',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    fontFamily: 'avenir'),
               ),
               Column(
                 children: <Widget>[
                   Text(
                     'O',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'avenir'),
                   ),
                   Container(
                     height: 3,
@@ -54,7 +60,10 @@ class MainScreen extends StatelessWidget {
               ),
               Text(
                 'KLY',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    fontFamily: 'avenir'),
               ),
             ],
           ),
@@ -86,7 +95,37 @@ class MainScreen extends StatelessWidget {
                             autoPlay: true,
                             enlargeCenterPage: true,
                             scrollDirection: Axis.horizontal,
-                          )))
+                          ))),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Best Seller',
+                    style: TextStyle(
+                        fontFamily: 'montserrat',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 450,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView(
+                      physics: BouncingScrollPhysics(),
+                      children: <Widget>[
+                        bestSellerBook(
+                            'book1.png',
+                            'Chien tranh giua cac vi sao',
+                            'Hongha',
+                            '450',
+                            '4.5',
+                            '560')
+                      ],
+                    ),
+                  )
                 ],
               )
             ],
@@ -108,9 +147,9 @@ class MainScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
-                width: 150,
-                height: 230,
-                padding: EdgeInsets.only(left: 10, right: 10),
+                width: 170,
+                height: 250,
+                padding: EdgeInsets.only(left: 5, right: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   image: DecorationImage(
@@ -146,4 +185,32 @@ class MainScreen extends StatelessWidget {
         ),
       )
       .toList();
+
+  Container bestSellerBook(String image, String name, String author,
+      String price, String rate, String totalRating) {
+    return Container(
+      child: InkWell(
+        child: Container(
+          margin: EdgeInsets.only(bottom: 50),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Hero(
+                  tag: '$image',
+                  child: Container(
+                    width: 70,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/best_seller/$image'),
+                          fit: BoxFit.cover),
+                    ),
+                  ))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
